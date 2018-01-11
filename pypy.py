@@ -129,6 +129,7 @@ def iterate_py(directory = ".", grader = generate_manual_grader(""), report_card
     print("Done.")
 
 def main():
+    #input_string = "12/12"
     #iterate_py(grader = generate_manual_grader(input_string))
     iterate_py(grader = ex_auto_grader)
 

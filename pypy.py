@@ -79,15 +79,17 @@ def fix_all_encoding(directory = ".", extension_list = [ ".txt" ]):
 # code and output for a given input string, and asks for the grade and comments
 def generate_manual_grader(input_string):
     def manual_grader(py_source, outfile):
-        print("FILENAME: {}".format(py_source));
-        print("PYTHON SOURCE")
+        print("{:-^60}".format("PYTHON SOURCE"))
         with open(py_source, "r") as sourcefile:
             source = sourcefile.read()
         print(source)
-        print("OUTPUT")
+
+        print("{:-^60}".format("OUTPUT"))
         print(get_output(py_source, input_string))
-        score = input("Enter score")
-        comments = input("Enter comments")
+
+        print("{:-^60}".format(""))
+        score = input("Enter score: ")
+        comments = input("Enter comments: ")
         outfile.write("{},{},{}\n".format(py_source, score, comments))
     return manual_grader
 
@@ -104,8 +106,7 @@ def ex_auto_grader(py_source, outfile):
     output = get_output(py_source, "12/12")
     if not re.findall(r'[Dd]ecember.{0,}12[Tt][Hh]', output):
         print()
-        print("OUTPUT")
-        print("-" * 60)
+        print("{:-^60}".format("OUTPUT"))
         print(output)
         print("-" * 60)
         if input("Is this output invalid? (any character for invalid)"):
@@ -121,17 +122,19 @@ def ex_auto_grader(py_source, outfile):
 # source path and (2) the file stream to a report card file
 def iterate_py(directory = ".", grader = generate_manual_grader(""), report_card = "results.csv"):
     with open(report_card, "w") as f:
-        for py_source in glob.glob(directory + "/**/*.py") + glob.glob(directory + "/*.py"):
-            if py_source != "./{}".format(__file__):
+        py_sources = glob.glob(directory + "/**/*.py") + glob.glob(directory + "/*.py")
+        for py_source in py_sources:
+            py_py_py = "./" + __file__ # pypy.py
+            if py_source != py_py_py:
                 print("{:*^80}".format(py_source))
                 grader(py_source, f)
     print("*" * 80)
     print("Done.")
 
 def main():
-    #input_string = "12/12"
-    #iterate_py(grader = generate_manual_grader(input_string))
-    iterate_py(grader = ex_auto_grader)
+    input_string = "12/12"
+    iterate_py(grader = generate_manual_grader(input_string))
+    #iterate_py(grader = ex_auto_grader)
 
 if __name__ == "__main__":
     main()

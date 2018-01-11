@@ -94,25 +94,26 @@ def generate_manual_grader(input_string):
 # An example of a custom automatic grader function
 def ex_auto_grader(py_source, outfile):
     points = 100
-    print("Filename: {}".format(py_source))
-
     with open(py_source, "r") as f:
         source = f.read()
 
     if not re.findall(r'input\(.+\)', source):
-        print("No input function -50 points!")
+        print("No input function")
         points -= 50
 
     output = get_output(py_source, "12/12")
     if not re.findall(r'[Dd]ecember.{0,}12[Tt][Hh]', output):
+        print()
         print("OUTPUT")
-        print("*" * 80)
+        print("-" * 60)
         print(output)
-        print("*" * 80)
+        print("-" * 60)
         if input("Is this output invalid? (any character for invalid)"):
-            print("Invalid output -50 points!")
+            print("Invalid output")
         points -= 50
 
+    if points == 100:
+        print("Perfect")
     outfile.write("{},{}\n".format(py_source, points))
     
 # Recursively searches for all python files within a directory and calls the
@@ -121,9 +122,11 @@ def ex_auto_grader(py_source, outfile):
 def iterate_py(directory = ".", grader = generate_manual_grader(""), report_card = "results.csv"):
     with open(report_card, "w") as f:
         for py_source in glob.glob(directory + "/**/*.py") + glob.glob(directory + "/*.py"):
-            print(py_source)
             if py_source != "./{}".format(__file__):
+                print("{:*^80}".format(py_source))
                 grader(py_source, f)
+    print("*" * 80)
+    print("Done.")
 
 def main():
     #iterate_py(grader = generate_manual_grader(input_string))

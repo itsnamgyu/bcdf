@@ -64,7 +64,6 @@ def get_file_output(py_source, file_input, output_files, input_string = ""):
 #
 # This function recursively searches a directory for all files of a given list
 # of extensions and fixes their encoding to utf-8
-# files of a given extension, or extensions (.txt by default) and fixes their
 def fix_all_encoding(directory = ".", extension_list = [ ".txt" ]):
     files = [ file for file in glob.glob(directory + "/**/*" + ext) + glob.glob(directory + "/*" + ext) for ext in extension_list ]
     invalid_files = []

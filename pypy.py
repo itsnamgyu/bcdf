@@ -91,7 +91,7 @@ def generate_manual_grader(input_string):
         outfile.write("{},{},{}\n".format(py_source, score, comments))
     return manual_grader
 
-# An example of custom automatic grader function
+# An example of a custom automatic grader function
 def ex_auto_grader(py_source, outfile):
     points = 100
     print("Filename: {}".format(py_source))

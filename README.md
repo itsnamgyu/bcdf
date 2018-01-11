@@ -1,9 +1,13 @@
+# How To
+
 Install python3
 
-pip install -r requirements.txt
+Do virtualenv or whatever
+
+```pip install -r requirements.txt```
 
 Try running ho.py
 
 Examine ho.py code
 
-Do it yourself!
+Change the main function to your liking

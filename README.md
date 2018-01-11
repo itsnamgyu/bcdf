@@ -6,8 +6,8 @@ Do virtualenv or whatever
 
 ```pip install -r requirements.txt```
 
-Try running ho.py
+Try running pypy.py
 
-Examine ho.py code
+Examine pypy.py code
 
 Change the main function to your liking

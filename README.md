@@ -8,7 +8,7 @@ Do virtualenv or whatever
 
 ```python3 pypy.py``` and examine example
 
-```vi pypy.py``` and examin code
+```vi pypy.py``` and examine code
 
 Change the main function to your liking
 

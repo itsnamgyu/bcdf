@@ -117,8 +117,8 @@ def ex_auto_grader(py_source, outfile):
         print("Perfect")
     outfile.write("{},{}\n".format(py_source, points))
     
-# Recursively searches for all python files within a directory and calls the
-# grader function. The grader function is given two parameters: (1) the python
+# Recursively iterates through for all python files within a directory and calls
+# the grader function. The grader function is given two parameters: (1) the python
 # source path and (2) the file stream to a report card file
 def iterate_py(directory = ".", grader = generate_manual_grader(""), report_card = "results.csv"):
     with open(report_card, "w") as f:

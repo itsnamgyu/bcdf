@@ -6,8 +6,12 @@ Do virtualenv or whatever
 
 ```pip install -r requirements.txt```
 
-Try running pypy.py
+```python3 pypy.py``` and examine example
 
-Examine pypy.py code
+```vi pypy.py``` and examin code
 
 Change the main function to your liking
+
+Copy the assignment files to a subdirectory
+
+```python3 pypy.py```

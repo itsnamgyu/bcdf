@@ -27,5 +27,5 @@ Then run your program.
 python3 pypy.py
 ```
 
-Get dat TA money
+Get dat TA money.
 ![](https://media.giphy.com/media/3o85xHEuqHN1Pdc38Q/giphy.gif)

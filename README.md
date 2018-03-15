@@ -28,4 +28,5 @@ python3 pypy.py
 ```
 
 Get dat TA money.
-![](https://media.giphy.com/media/3o85xHEuqHN1Pdc38Q/giphy.gif)
+
+![](https://media.giphy.com/media/gTURHJs4e2Ies/giphy.gif)

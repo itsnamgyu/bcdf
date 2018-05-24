@@ -1,0 +1,4 @@
+.DS_Store
+venv
+results.csv
+__pycache__

@@ -340,7 +340,7 @@ def main():
         input_strings = []
         for i in range(args.multistring):
             input_strings.append(
-                input('enter input string ({}/{})'.format(i + 1, args.multistring)))
+                input('enter input string ({}/{}) '.format(i + 1, args.multistring)))
         grade(directory, grader=generate_manual_grader(
             input_strings), report_card=results)
 

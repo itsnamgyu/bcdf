@@ -4,11 +4,13 @@ import glob
 import os
 import re
 import argparse
-from typing import List, Union, Dict, Tuple
+import io
+from typing import List, Dict, Tuple
 
 
 # { output: (score, comment) }
 result_dict: Dict[str, Tuple[str, str]] = {}
+
 
 def get_all_pies(directory=".", only_subdirs=True):
     pies = glob.glob(directory + "/**/*.py", recursive=True)
@@ -22,7 +24,7 @@ def rename_py(directory="."):
     for py in get_all_pies():
         dir, name = os.path.split(py)
         print(name)
-        
+
         found = pattern.search(name)
         if found:
             student_num = found.group()
@@ -35,7 +37,8 @@ def get_encoding(file):
     detector = UniversalDetector()
     for line in open(file, "rb"):
         detector.feed(line)
-        if detector.done: break
+        if detector.done:
+            break
     detector.close()
     return detector.result['encoding']
 
@@ -55,9 +58,12 @@ def fix_encoding(file):
 '''
 Get the output string of a python progam for a given input string
 '''
+
+
 def get_output(py_source, input_string):
     os.system("touch temp")
-    os.system("echo \"{}\" | python3 \"{}\" >> temp".format(input_string, py_source))
+    os.system("echo \"{}\" | python3 \"{}\" >> temp".format(
+        input_string, py_source))
     with codecs.open("temp", mode="r", encoding="utf-8") as f:
         output_string = f.read()
     os.remove("temp")
@@ -71,14 +77,17 @@ file_input example:      { "in0.txt": "12/12", "in1.txt": "23/21" }
 output_files example:    [ "out0.txt", "out1.txt" ]
 return example:          { "stdout": "Done", "out0.txt": "December 12th", "out1.txt": "Error" }
 '''
-def get_file_output(py_source, file_input, output_files, input_string = ""):
+
+
+def get_file_output(py_source, file_input, output_files, input_string=""):
     output = {}
 
     for file in file_input:
         with open(file, "w") as f:
             f.write(file_input[file])
     os.system("rm temp")
-    os.system("echo \"{}\" | python3 \"{}\" >> temp".format(input_string, py_source))
+    os.system("echo \"{}\" | python3 \"{}\" >> temp".format(
+        input_string, py_source))
     with io.open("temp", mode="r", encoding="utf-8") as f:
         output["stdout"] = f.read()
     io.remove("temp")
@@ -98,8 +107,11 @@ All Korean text files made with notepad are encoded in Korean (Windows, DOS)
 This function recursively searches a directory for all files of a given list
 of extensions and fixes their encoding to utf-8
 '''
-def fix_all_encoding(directory = ".", extension_list = [ ".txt" ]):
-    files = [ file for file in glob.glob(directory + "/**/*" + ext) + glob.glob(directory + "/*" + ext) for ext in extension_list ]
+
+
+def fix_all_encoding(directory=".", extension_list=[".txt"]):
+    files = [file for file in glob.glob(
+        directory + "/**/*" + ext) + glob.glob(directory + "/*" + ext) for ext in extension_list]
     invalid_files = []
     for file in files:
         if not fix_encoding(file):
@@ -107,12 +119,14 @@ def fix_all_encoding(directory = ".", extension_list = [ ".txt" ]):
     print("Invalid Files:")
     for file in invalid_files:
         print(file)
-                    
+
 
 '''
 Generates a grader function that shows the human grader the original source
 code and output for a given input string, and asks for the grade and comments
 '''
+
+
 def generate_manual_grader(input_strings: List[str]):
     def manual_grader(py_source, outfile):
         print("{:-^60}".format("PYTHON SOURCE"))
@@ -142,16 +156,18 @@ def generate_manual_grader(input_strings: List[str]):
 
 def grader(py_source, outfile):
     input_string = \
-"""13
+        """13
 1 0 -1 0 2 -2 -3 3 0 -4 4 0 0
 """
     re_code1 = re.compile(r".{0,}구[^`]{0,}다.{0,}")
     re_code2 = re.compile(r".+문제[^`]{0,}2[^`]{0,}")
-    re_code_answer1 = re.compile(r"input[^`]{0,}while[^`]{0,}<[^`]{0,}:[^`]{0,}True")
+    re_code_answer1 = re.compile(
+        r"input[^`]{0,}while[^`]{0,}<[^`]{0,}:[^`]{0,}True")
     re_code_answer2 = re.compile(r"input[^`]{0,}split()[^`]{0,}\+[^`]{0,}1")
     re_out1 = re.compile(r"구[^`]{0,}다")
     re_out2 = re.compile(r".{0,}:.{0,}:.{0,}")
-    re_answer1 = re.compile(r"2[^`]{0,}3[^`]{0,}5[^`]{0,}7[^`]{0,}11[^`]{0,}13[^`]{0,}17[^`]{0,}19[^`]{0,}23[^`]{0,}29[^`]{0,}31[^`]{0,}37[^`]{0,}41.{0,}\n.{0,}13")
+    re_answer1 = re.compile(
+        r"2[^`]{0,}3[^`]{0,}5[^`]{0,}7[^`]{0,}11[^`]{0,}13[^`]{0,}17[^`]{0,}19[^`]{0,}23[^`]{0,}29[^`]{0,}31[^`]{0,}37[^`]{0,}41.{0,}\n.{0,}13")
     re_answer2 = re.compile(r":.{0,}4.{0,}:.{0,}4")
 
     with open(py_source, "r") as f:
@@ -161,7 +177,7 @@ def grader(py_source, outfile):
     score = 10
     one = True
     two = True
-    
+
     if not re_answer1.findall(output):
         out1 = re_out1.findall(output)
         print("{:-^60}".format("OUTPUT1"))
@@ -213,7 +229,7 @@ def grader(py_source, outfile):
 
         if input("Wrong? (press anything for wrong)"):
             two = False
-        
+
     wrong = []
     if not one:
         score -= 1
@@ -221,18 +237,20 @@ def grader(py_source, outfile):
     if not two:
         score -= 1
         wrong.append(2)
-    
+
     print("SCORE: {}".format(score))
     outfile.write("{},".format(py_source))
     outfile.write(str(score) + ",")
     for n in wrong:
         outfile.write("{},".format(n))
-    outfile.write("\n");
-    
-    
+    outfile.write("\n")
+
+
 '''
 An example of a custom automatic grader function
 '''
+
+
 def ex_auto_grader(py_source, outfile):
     points = 100
     with open(py_source, "r") as f:
@@ -255,18 +273,21 @@ def ex_auto_grader(py_source, outfile):
     if points == 100:
         print("Perfect")
     outfile.write("{},{}\n".format(py_source, points))
-    
+
 
 '''
 Recursively searches for all python files within a directory and calls the
 grader function. The grader function is given two parameters: (1) the python
 source path and (2) the file stream to a report card file
 '''
-def grade(directory = ".", grader = generate_manual_grader(['']), report_card = "results.csv"):
+
+
+def grade(directory=".", grader=generate_manual_grader(['']), report_card="results.csv"):
     with open(report_card, "w") as f:
-        py_sources = glob.glob(directory + "/**/*.py") + glob.glob(directory + "/*.py")
+        py_sources = glob.glob(directory + "/**/*.py") + \
+            glob.glob(directory + "/*.py")
         for py_source in py_sources:
-            py_py_py = "./" + __file__ # pypy.py
+            py_py_py = "./" + __file__  # pypy.py
             if py_source != py_py_py:
                 print("{:*^80}".format(py_source))
                 grader(py_source, f)
@@ -275,8 +296,9 @@ def grade(directory = ".", grader = generate_manual_grader(['']), report_card = 
 
 
 def main():
-    parser = argparse.ArgumentParser(description='Grade your Python assignments... using Python!')
-    parser.add_argument('--rename', action='store_true')
+    parser = argparse.ArgumentParser(
+        description='Grade your Python assignments... using Python!')
+    parser.add_argument('-R', '--rename', action='store_true')
     parser.add_argument('-s', '--simple', action='store_true')
     parser.add_argument('-m', '--multistring', type=int)
     parser.add_argument('-d', '--directory', type=str)
@@ -309,17 +331,18 @@ def main():
         print("can't enable both simple & multistring mode")
         return
 
-
     if args.simple:
         input_string = input('enter input string')
-        grade(directory, grader = generate_manual_grader([input_string]), report_card=results)
-
+        grade(directory, grader=generate_manual_grader(
+            [input_string]), report_card=results)
 
     if args.multistring:
         input_strings = []
         for i in range(args.multistring):
-            input_strings.append(input('enter input string ({}/{})'.format(i + 1, args.multistring)))
-        grade(directory, grader = generate_manual_grader(input_strings), report_card=results)
+            input_strings.append(
+                input('enter input string ({}/{})'.format(i + 1, args.multistring)))
+        grade(directory, grader=generate_manual_grader(
+            input_strings), report_card=results)
 
 
 if __name__ == "__main__":

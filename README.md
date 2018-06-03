@@ -1,13 +1,32 @@
-# How To
+# Python With Python
+Work in-progress Python program to grade Python assignments... with Python! 
 
-Install python3
+# Installation
 
-Do virtualenv or whatever
+1. Install python3
+2. Install the required packages
+```
+pip install -r requirements.txt
+```
 
-```pip install -r requirements.txt```
+# Usage
+Will document later... just try this and examine what happens.
+```
+python3 pypy.py
+```
 
-Try running pypy.py
+Then, examine the source code.
+```
+vi pypy.py
+```
 
-Examine pypy.py code
+Then change the source code to your needs and copy your assignment files to a subdirectory.
 
-Change the main function to your liking
+Then run your program.
+```
+python3 pypy.py
+```
+
+Get dat TA money.
+
+![](https://media.giphy.com/media/gTURHJs4e2Ies/giphy.gif)

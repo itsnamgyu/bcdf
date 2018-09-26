@@ -29,7 +29,7 @@ This is what our program will do:
 - Readability over development speed over optimizaiton.
 - Consider the ROI for the *TA* who is using this program. For instance: copy-checking feature—that's a *want*, not a *need*.
 - On the subject of ROI, note that the more you want to automate, the more exceptions you'll need to deal with.
-- We're trying to make like easier for the TA. We want 99% of hand-ins to be covered *bcdf*.
+- We're trying to make like easier for the TA. We want 99% of hand-ins to be covered by *bcdf*.
 
 ## What we won't do...
 We will not come up with a whole new workflow for students to send in their assignments. We do not want to liable for any issues there. Not to mention, convincing the school board, professors, TA managers to change the system is just a bit cumbersome. It doesn't work for us shy CSE majors. Let's just get the job done, *get dat TA money, get some coffee, and get on with our own assignments.*

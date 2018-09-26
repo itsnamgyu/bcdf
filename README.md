@@ -32,7 +32,7 @@ This is what our program will do:
 - We're trying to make like easier for the TA. We want 99% of hand-ins to be covered *bcdf*.
 
 ## What we won't do...
-We will not come up with a whole new workflow for students to send in their assignments. We do not want to liable for any issues there. Not to mention, convincing the school board, professors, TA managers to change the system is just a bit cumbersome. I imagine that's not very comfortable for us shy, gitty CSE majors. Let's just get the job done, *get dat TA money, get some coffee, and get on with our own assignments.*
+We will not come up with a whole new workflow for students to send in their assignments. We do not want to liable for any issues there. Not to mention, convincing the school board, professors, TA managers to change the system is just a bit cumbersome. It doesn't work for us shy CSE majors. Let's just get the job done, *get dat TA money, get some coffee, and get on with our own assignments.*
 
 ![Get dat TA money](https://media.giphy.com/media/gTURHJs4e2Ies/giphy.gif)
 

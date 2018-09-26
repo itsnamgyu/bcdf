@@ -2,7 +2,7 @@
 ![Document](https://img.shields.io/badge/Document-English-black.svg)
 
 # bdcf
-A auto-grading module to help TA's slack on the job! Our main language will be Python 3.
+A auto-grading module to help TA's slack on the job!
 
 # Undergoing Major Construction
 

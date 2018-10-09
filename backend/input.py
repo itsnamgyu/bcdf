@@ -27,10 +27,7 @@ class TestCase(object):
     @abc.abstractmethod
     def get_stdin(self) -> str:
         '''
-        Return path to file with stdin contents. Will use redirection to
-        pass it to the student's program.
-
-        cat get_stdin() | python3 assignment.py
+        Return stdin contents to be passed to the student program.
         '''
         return
 
@@ -103,10 +100,7 @@ class StdInput(TestCase):
         return
 
     def get_stdin(self) -> str:
-        with open(StdInput.INPUT_TXT, 'w') as f:
-            f.write(self.string)
-        return StdInput.INPUT_TXT
+        return self.string
 
     def clean(self, working_path) -> None:
-        os.remove(StdInput.INPUT_TXT)
         return

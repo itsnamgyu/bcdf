@@ -56,8 +56,6 @@ class Compiler(object):
     def _clean(self) -> None:
         '''
         Clean up executable files, intermediate files etc.
-
-        Ensures that cleanup will be called only once after compile.
         '''
 
 
@@ -88,7 +86,13 @@ class CCompiler(Compiler):
         return res
 
     def _clean(self):
-        os.remove(self.outfile)
+        if self.outfile:
+            try:
+                os.remove(self.outfile)
+            except FileNotFoundError:
+                pass
+        self.outfile = None
+                
 
 
 def main():

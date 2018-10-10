@@ -1,10 +1,15 @@
+# -*- coding: utf-8 -*-
+
+import sys
+sys.path.append('..')
+
 import os
 import abc
 import subprocess
 from typing import Tuple, Dict, List
 
-import case
-import lib
+from core import case
+from core import lib
 
 
 class Tester(object):

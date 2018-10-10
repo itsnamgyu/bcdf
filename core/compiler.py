@@ -1,8 +1,13 @@
+# -*- coding: utf-8 -*-
+
+import sys
+sys.path.append('..')
+
 import os
 import abc
 import tempfile
 
-import lib
+from core import lib
 
 
 class Compiler(object):

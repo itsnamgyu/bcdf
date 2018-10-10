@@ -2,8 +2,6 @@
 
 import abc
 
-import manual_io as mio
-
 
 class TestCase(object):
     __metaclass__ = abc.ABCMeta
@@ -34,33 +32,11 @@ class TestCase(object):
         return
 
 
-def get_y_or_n(verbose=1) -> bool:
-    while True:
-        if verbose:
-            string = input('(y/n) ')
-        else:
-            string = input()
-        if string == 'y':
-            return True
-        elif string == 'n':
-            return False
-
-
-class StdInput(TestCase):
-    INPUT_TXT = '.bcdf_stdin.txt'
-
+class StdInputTest(TestCase):
     @classmethod
     def from_file(cls, path):
         with open(path, 'w') as f:
             return StdInput(f.read())
-
-    @classmethod
-    def from_immediate_file(cls, title=None):
-        if title:
-            string = mio.edit_string(title='Testcase Input [{}]'.format(title))
-        else:
-            string = mio.edit_string(title='Testcase Input')
-        return cls(string)
 
     def __init__(self, string):
         self.string = string
@@ -70,9 +46,6 @@ class StdInput(TestCase):
 
     def get_stdin(self) -> str:
         return self.string
-
-    def edit(self) -> None:
-        self.string = mio.edit_string(title='Edit String', string=self.string)
 
     def set(self, string: str) -> None:
         self.string = string
@@ -85,7 +58,7 @@ class StdInput(TestCase):
 
 
 def main():
-    print(StdInput.from_immediate_file().string)
+    print('nothing to show here!')
 
 
 if __name__ == '__main__':

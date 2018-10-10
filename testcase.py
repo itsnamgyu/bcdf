@@ -1,15 +1,8 @@
 # -*- coding: utf-8 -*-
 
 import abc
-import os
-import sys
-import tempfile
-import subprocess
 
 import manual_io as mio
-
-
-EDITOR = os.environ.get('EDITOR','vim')
 
 
 class TestCase(object):
@@ -81,10 +74,10 @@ class StdInput(TestCase):
     def edit(self) -> None:
         self.string = mio.edit_string(title='Edit String', string=self.string)
 
-    def set(string: str) -> None:
+    def set(self, string: str) -> None:
         self.string = string
 
-    def append(string: str) -> None:
+    def append(self, string: str) -> None:
         self.string += string
 
     def clean(self, working_path) -> None:

@@ -57,7 +57,7 @@ class Tester(object):
         return res
 
 
-    def run(executable: str, tests: List[case.TestCase], **kwargs) -> List[dict]:
+    def run(self, executable: str, tests: List[case.TestCase], **kwargs) -> List[dict]:
         '''
         Test executable with multiple test cases and return result
 

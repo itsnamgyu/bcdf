@@ -64,10 +64,11 @@ class StdInput(TestCase):
     @classmethod
     def from_immediate_file(cls, title=None):
         if title:
-            string = mio.edit_string(title='Input For Testcase [{}]'.format(title))
+            string = mio.edit_string(title='Testcase Input [{}]'.format(title))
         else:
-            string = mio.edit_string(title='Input For Testcase')
+            string = mio.edit_string(title='Testcase Input')
         return cls(string)
+
     def __init__(self, string):
         self.string = string
 
@@ -88,3 +89,11 @@ class StdInput(TestCase):
 
     def clean(self, working_path) -> None:
         return
+
+
+def main():
+    print(StdInput.from_immediate_file().string)
+
+
+if __name__ == '__main__':
+    main()

@@ -47,7 +47,13 @@ def edit_string(string='', title=None) -> str:
 
     return string
 
-string = edit_string('Hello')
-print(string)
-string = edit_string(string)
-print(string)
+
+def main():
+    string = edit_string('Hello')
+    print(string)
+    string = edit_string(string)
+    print(string)
+
+
+if __name__ == '__main__':
+    main()

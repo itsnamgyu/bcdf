@@ -66,7 +66,7 @@ class Tester(object):
         '''
         res = list()
         for test in tests:
-            res.append(test_single(executable, test, **kwargs))
+            res.append(run_single(executable, test, **kwargs))
         return res
 
 

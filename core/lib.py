@@ -13,6 +13,7 @@ def execute(args, stdin='', timeout=1) -> dict:
                                            timeout=timeout)
         except subprocess.TimeoutExpired as e:
             p.kill()
+            stdout, stderr = p.communicate()
 
         return dict(
             returncode=p.returncode,

@@ -2,3 +2,5 @@
 venv
 results.csv
 __pycache__
+.bcdf_test_stdin.txt
+.bcdf_test_c_program.out

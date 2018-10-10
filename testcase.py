@@ -6,6 +6,8 @@ import sys
 import tempfile
 import subprocess
 
+import manual_io as mio
+
 
 EDITOR = os.environ.get('EDITOR','vim')
 
@@ -58,6 +60,14 @@ class StdInput(TestCase):
     def from_file(cls, path):
         with open(path, 'w') as f:
             return StdInput(f.read())
+
+    @classmethod
+    def from_immediate_file(cls, title=None):
+        if title:
+            string = mio.edit_string(title='Input For Testcase [{}]'.format(title))
+        else:
+            string = mio.edit_string(title='Input For Testcase')
+        return cls(string)
     def __init__(self, string):
         self.string = string
 
@@ -66,6 +76,9 @@ class StdInput(TestCase):
 
     def get_stdin(self) -> str:
         return self.string
+
+    def edit(self) -> None:
+        self.string = mio.edit_string(title='Edit String', string=self.string)
 
     def set(string: str) -> None:
         self.string = string

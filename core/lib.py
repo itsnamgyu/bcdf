@@ -1,4 +1,10 @@
+import sys
+sys.path.append('..')
+
 import subprocess
+
+from load.lib import auto_decode
+
 
 def execute(args, stdin='', timeout=1) -> dict:
     '''
@@ -17,5 +23,5 @@ def execute(args, stdin='', timeout=1) -> dict:
 
         return dict(
             returncode=p.returncode,
-            stdout=stdout.decode(),
-            stderr=stderr.decode())
+            stdout=auto_decode(stdout),
+            stderr=auto_decode(stderr))

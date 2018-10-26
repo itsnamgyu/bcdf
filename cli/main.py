@@ -44,7 +44,7 @@ for _ in range(4):
     answersets.append(list())
 
 while True:
-    s = input('Add test case? (1, 2, 3, 4, q) ')
+    s = input('Add test case? {}, q: '.format(list(range(0, n_problems + 1))))
     if s == 'q':
         break
     else:

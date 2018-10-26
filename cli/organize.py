@@ -7,6 +7,8 @@ import re
 from collections import defaultdict
 import shutil
 
+from natsort import natsorted
+
 
 if os.path.exists('source'):
     print('source directory (or file) already exists. moving to source.bak')
@@ -33,7 +35,7 @@ while True:
 
 key_re = re.compile('(20[0-9]{6})')
 
-sources.sort()
+sources = natsorted(sources)
 students = defaultdict(list)
 
 for source in sources:

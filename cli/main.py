@@ -10,6 +10,7 @@ import codecs
 import shutil
 
 import pandas as pd
+from natsort import natsorted
 
 import lib
 from core import case
@@ -27,7 +28,7 @@ while True:
 sources = glob.glob('source/*.c')
 key_re = re.compile('(20[0-9]{6})')
 
-sources.sort()
+sources = natsorted(sources)
 students = defaultdict(list)
 
 for source in sources:

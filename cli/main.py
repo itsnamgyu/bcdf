@@ -17,7 +17,12 @@ from core import tester
 from core import compiler as cp
 from load.lib import auto_open
 
-n_problems = 4
+while True:
+    try:
+        n_problems = int(input('how many problems: '))
+        break
+    except ValueError:
+        pass
 
 sources = glob.glob('source/*.c')
 key_re = re.compile('(20[0-9]{6})')

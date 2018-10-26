@@ -39,12 +39,12 @@ print(json.dumps(students, indent=4))
 
 testsets = []
 answersets = []
-for _ in range(4):
+for _ in range(n_problems):
     testsets.append(list())
     answersets.append(list())
 
 while True:
-    s = input('Add test case? {}, q: '.format(list(range(0, n_problems + 1))))
+    s = input('Add test case? {}, q: '.format(list(range(1, n_problems + 1))))
     if s == 'q':
         break
     else:

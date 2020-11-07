@@ -27,6 +27,25 @@ def auto_open(path):
         warnings.warn("couldn't decode file. return empty file:\n{}".format(str(e)))
         return open(os.path.join(BASE_DIR, 'blank.txt'), 'r')
 
+
+def auto_read(path):
+    default_codecs = ["EUC-KR", "ISO-8859-0", "CP949"]  # Korean stuff
+
+    try:
+        with codecs.open(path, 'r') as f:
+            return f.read()
+    except UnicodeDecodeError:
+        pass
+
+    for codec in default_codecs:
+        try:
+            with codecs.open(path, 'rU', codec) as f:
+                return f.read()
+        except UnicodeDecodeError:
+            pass
+    return None
+
+
 def auto_decode(b):
     if len(b) == 0:
         return ''

@@ -29,7 +29,7 @@ def auto_open(path):
 
 
 def auto_read(path):
-    default_codecs = ["EUC-KR", "ISO-8859-0", "CP949"]  # Korean stuff
+    default_codecs = ["EUC-KR", "ISO-8859-9", "CP949"]  # Korean stuff
 
     try:
         with codecs.open(path, 'r') as f:
@@ -43,6 +43,7 @@ def auto_read(path):
                 return f.read()
         except UnicodeDecodeError:
             pass
+
     return None
 
 
